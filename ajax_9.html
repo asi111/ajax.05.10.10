@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id ="div">
+        <ul>
+
+        </ul>
+    </div>
+
+    <body>
+        <button type="button" onclick="loadDoc()">Request data</button><p id="demo"></p>
+        <script>
+
+            let myDIv = document.getElementById("div")
+
+    function loadDoc() {
+      const xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function() {
+        if (this.readyState === 4 && this.status === 200) {   
+            let responseObj = JSON.parse(this.responseText)
+            for(let i = 0 ; i< responseObj.length; i++){
+               myDIv.innerHTML+= `<li> ${responseObj[i].title}<li>
+              <li>${responseObj[i].Id}<li>
+              <li>${responseObj[i].completed}<li>`
+            }
+            // console.log(responseObj)
+          
+            document.getElementById("demo").innerHTML = this.responseText;}
+            
+    };
+
+      xhttp.open("GET",  "https://jsonplaceholder.typicode.com/todos" ); xhttp.send();
+    } 
+    
+  
+    
+    
+    </script>
+    </body>
+    
